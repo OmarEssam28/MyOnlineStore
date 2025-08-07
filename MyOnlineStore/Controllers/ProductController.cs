@@ -9,16 +9,16 @@ namespace MyOnlineStore.Controllers
 {
     public class ProductController : Controller
     {
-        /*------------------------------------------------------------------*/
+     
         MyContext db = new MyContext();
-        /*------------------------------------------------------------------*/
+       
         [HttpGet]
         public IActionResult Index()
         {
             var Products = db.Products.Include(e => e.Category);
             return View(Products);
         }
-        /*------------------------------------------------------------------*/
+  
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -29,14 +29,14 @@ namespace MyOnlineStore.Controllers
             }
             return View(Product);
         }
-        /*------------------------------------------------------------------*/
+     
         [HttpGet]
         public IActionResult Create()
         {
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
         }
-        /*------------------------------------------------------------------*/
+        
         [HttpPost]
         public IActionResult Create(Product product)
         {
@@ -48,7 +48,6 @@ namespace MyOnlineStore.Controllers
                 return View();
             }
 
-            // Ignore Validation Department
             ModelState.Remove("Category");
             if (product!= null && ModelState.IsValid)
             {
@@ -61,47 +60,47 @@ namespace MyOnlineStore.Controllers
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
         }
-        /*------------------------------------------------------------------*/
+        
         [HttpGet]
         public IActionResult Edit(int id)
         {
 
-            var employee = db.Products.Include(e => e.Category).FirstOrDefault(e => e.CategoryId == id);
-            if (employee == null)
+            var product = db.Products.Include(e => e.Category).FirstOrDefault(e => e.CategoryId == id);
+            if (product == null)
             {
                 return RedirectToAction("Index");
             }
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
-            return View(employee);
+            return View(product);
         }
-        /*------------------------------------------------------------------*/
+        
         [HttpPost]
-        public IActionResult Edit(Product employee)
+        public IActionResult Edit(Product product)
         {
             ModelState.Remove("Category");
-            if (employee != null && ModelState.IsValid)
+            if (product != null && ModelState.IsValid)
             {
-                // Search With Id And Make Update
-                db.Products.Update(employee);
+              
+                db.Products.Update(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
-            return View(employee);
+            return View(product);
         }
-        /*------------------------------------------------------------------*/
+ 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var employee = db.Products.Find(id);
-            if (employee == null)
+            var product = db.Products.Find(id);
+            if (product == null)
             {
                 return RedirectToAction("Index");
             }
-            db.Products.Remove(employee);
+            db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        /*------------------------------------------------------------------*/
+      
     }
 }
