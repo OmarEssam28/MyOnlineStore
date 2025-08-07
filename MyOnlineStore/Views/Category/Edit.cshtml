@@ -1,0 +1,12 @@
+﻿@model Category
+
+<h2>Edit Category</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="CategoryId" />
+    <p>Name: <input asp-for="Name" /></p>
+    <p>Description: <input asp-for="Description" /></p>
+    <p><input type="submit" value="Save Changes" /></p>
+</form>
+
+<p><a href="/Category">Back to List</a></p>

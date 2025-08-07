@@ -1,0 +1,14 @@
+﻿@model User
+
+<h2>Edit User</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="UserId" />
+    <p>First Name: <input asp-for="FirstName" /></p>
+    <p>Last Name: <input asp-for="LastName" /></p>
+    <p>Email: <input asp-for="Email" /></p>
+    <p>Password: <input asp-for="Password" type="password" /></p>
+    <p><input type="submit" value="Save Changes" /></p>
+</form>
+
+<p><a href="/User">Back to List</a></p>

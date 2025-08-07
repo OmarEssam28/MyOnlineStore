@@ -1,0 +1,13 @@
+﻿@model Product
+
+<h2>Product Details</h2>
+
+<p><strong>Title:</strong> @Model.Title</p>
+<p><strong>Price:</strong> @Model.Price</p>
+<p><strong>Description:</strong> @Model.Description</p>
+<p><strong>Quantity:</strong> @Model.Quantity</p>
+
+<p>
+    <a href="/Product/Edit/@Model.ProductId">Edit</a> |
+    <a href="/Product">Back to List</a>
+</p>

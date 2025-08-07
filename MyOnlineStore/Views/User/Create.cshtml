@@ -1,0 +1,13 @@
+﻿@model User
+
+<h2>Create User</h2>
+
+<form method="post">
+    <p>First Name: <input asp-for="FirstName" /></p>
+    <p>Last Name: <input asp-for="LastName" /></p>
+    <p>Email: <input asp-for="Email" /></p>
+    <p>Password: <input asp-for="Password" type="password" /></p>
+    <p><input type="submit" value="Save" /></p>
+</form>
+
+<p><a href="/User">Back to List</a></p>

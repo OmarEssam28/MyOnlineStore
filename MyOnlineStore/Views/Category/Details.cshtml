@@ -1,0 +1,11 @@
+﻿@model Category
+
+<h2>Category Details</h2>
+
+<p><strong>Name:</strong> @Model.Name</p>
+<p><strong>Description:</strong> @Model.Description</p>
+
+<p>
+    <a href="/Category/Edit/@Model.CategoryId">Edit</a> |
+    <a href="/Category">Back to List</a>
+</p>
