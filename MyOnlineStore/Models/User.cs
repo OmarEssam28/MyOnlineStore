@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyOnlineStore.Models
 {
-    // 1. User Model
+    
     public class User
     {
-        [Key] // Defines this property as the primary key.
+        [Key] 
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "First name is required.")]
