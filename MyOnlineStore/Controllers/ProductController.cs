@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,34 +9,34 @@ namespace MyOnlineStore.Controllers
 {
     public class ProductController : Controller
     {
-     
         MyContext db = new MyContext();
-       
+
         [HttpGet]
         public IActionResult Index()
         {
             var Products = db.Products.Include(e => e.Category);
             return View(Products);
         }
-  
+
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var Product = db.Products.Include(e => e.Category).FirstOrDefault(e => e.CategoryId == id);
-            if (Product == null)
+            
+            var product = db.Products.Include(e => e.Category).FirstOrDefault(e => e.ProductId == id);
+            if (product == null)
             {
                 return RedirectToAction("Index");
             }
-            return View(Product);
+            return View(product);
         }
-     
+
         [HttpGet]
         public IActionResult Create()
         {
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult Create(Product product)
         {
@@ -49,7 +49,7 @@ namespace MyOnlineStore.Controllers
             }
 
             ModelState.Remove("Category");
-            if (product!= null && ModelState.IsValid)
+            if (product != null && ModelState.IsValid)
             {
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -60,12 +60,12 @@ namespace MyOnlineStore.Controllers
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
             return View();
         }
-        
+
         [HttpGet]
         public IActionResult Edit(int id)
         {
-
-            var product = db.Products.Include(e => e.Category).FirstOrDefault(e => e.CategoryId == id);
+            
+            var product = db.Products.Include(e => e.Category).FirstOrDefault(e => e.ProductId == id);
             if (product == null)
             {
                 return RedirectToAction("Index");
@@ -73,14 +73,13 @@ namespace MyOnlineStore.Controllers
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
             return View(product);
         }
-        
+
         [HttpPost]
         public IActionResult Edit(Product product)
         {
             ModelState.Remove("Category");
             if (product != null && ModelState.IsValid)
             {
-              
                 db.Products.Update(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,7 +87,7 @@ namespace MyOnlineStore.Controllers
             ViewBag._Categories = new SelectList(db.Categories, "CategoryId", "Name");
             return View(product);
         }
- 
+
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -101,6 +100,5 @@ namespace MyOnlineStore.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-      
     }
 }
