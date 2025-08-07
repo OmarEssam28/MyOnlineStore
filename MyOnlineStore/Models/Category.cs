@@ -17,7 +17,6 @@ namespace MyOnlineStore.Models
         [StringLength(500)]
         public string Description { get; set; }
 
-        // Navigation Property: A Category can have many Products.
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }
