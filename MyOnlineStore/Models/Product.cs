@@ -25,14 +25,12 @@ namespace MyOnlineStore.Models
         [Range(0, int.MaxValue, ErrorMessage = "Quantity cannot be negative.")]
         public int Quantity { get; set; }
 
-        public string? ImagePath { get; set; } // Nullable, as a product might not have an image initially.
+        public string? ImagePath { get; set; } 
 
-        // Foreign Key for Category
         [Required(ErrorMessage = "Category is required.")]
         [Display(Name = "Category")]
         public int? CategoryId { get; set; }
 
-        // Navigation Property: Each Product belongs to one Category.
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
     }
